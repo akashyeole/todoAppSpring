@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+
+.todo__title, .todo__description, .todo__description-wrapper {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

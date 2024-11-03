@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import { Provider } from 'react-redux';
 import './App.css';
+import { store } from './redux/store';
+import Todos from './components/Todos';
+import { NextUIProvider } from '@nextui-org/react';
+import Navbar from './components/Navabar';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <NextUIProvider>
+      <BrowserRouter>
+        <Navbar />
+        <div className="App flex flex-col justify-center items-center">
+          <Provider store={store}>
+            <Routes>
+              <Route exact path='/' element={<Todos completed={false}/>}/>
+              <Route path='/completed' element={<Todos completed={true} />}/>
+            </Routes>
+          </Provider>
+        </div>
+      </BrowserRouter>
+    </NextUIProvider>
   );
 }
 
